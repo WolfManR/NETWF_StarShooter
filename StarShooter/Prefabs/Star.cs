@@ -11,9 +11,9 @@ public class Star : GameObject
         Log("Star created");
     }
     
-    public override void Draw(Graphics drawer)
+    public override void Draw()
     {
-        drawer.DrawImage(Image, _position);
+        Drawer.DrawImage(Image, _position);
 
         Log("Star drawn");
     }

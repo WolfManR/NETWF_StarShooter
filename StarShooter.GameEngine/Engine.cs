@@ -4,9 +4,9 @@ namespace StarShooter.GameEngine;
 
 public static class Engine
 {
-    static BufferedGraphicsContext context;
+    private static BufferedGraphicsContext context;
     public static BufferedGraphics buffer;
-    public static Graphics TargetGraphics { get; }
+    public static Graphics TargetGraphics => buffer.Graphics;
     public static int Width { get; set; }
     public static int Height { get; set; }
     public static Timer Timer { get; } = new Timer { Interval = 100 };
