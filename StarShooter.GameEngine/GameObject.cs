@@ -20,7 +20,7 @@ public abstract class GameObject
     public Point Position => _position;
     public Size Size => _size;
 
-    public abstract void Draw();
+    public abstract void Draw(Graphics drawer);
     public abstract void Update();
 
     protected void Log(string message)
