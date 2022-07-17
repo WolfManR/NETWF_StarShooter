@@ -26,6 +26,7 @@ public static class Engine
         Timer.Tick += (_, _) =>
         {
             Scene.Draw();
+            buffer.Render();
             Scene.Update();
         };
     }
@@ -34,5 +35,10 @@ public static class Engine
     {
         Scene.Load();
         Timer.Start();
+    }
+
+    public static void Render()
+    {
+        buffer.Render();
     }
 }

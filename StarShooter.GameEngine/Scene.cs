@@ -20,12 +20,7 @@ public abstract class Scene
     public abstract void Load();
     public abstract void Draw();
     public abstract void Update();
-
-    protected void Render()
-    {
-        Engine.buffer.Render();
-    }
-
+    
     protected void Log(string message)
     {
         LogService.Log(message);
