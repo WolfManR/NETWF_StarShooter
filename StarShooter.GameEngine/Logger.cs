@@ -1,4 +1,4 @@
-﻿namespace StarShooter.Loggers;
+﻿namespace StarShooter.GameEngine;
 
 public abstract class Logger
 {

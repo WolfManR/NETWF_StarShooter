@@ -22,4 +22,9 @@ public abstract class GameObject
 
     public abstract void Draw();
     public abstract void Update();
+
+    protected void Log(string message)
+    {
+        LogService.Log(message);
+    }
 }

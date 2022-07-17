@@ -1,4 +1,6 @@
-﻿namespace StarShooter.Loggers;
+﻿using StarShooter.GameEngine;
+
+namespace StarShooter.Loggers;
 
 public class FileLogger : Logger, IDisposable
 {

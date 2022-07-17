@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\StarShooter.GameEngine\StarShooter.GameEngine.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Assets\Asteroid1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

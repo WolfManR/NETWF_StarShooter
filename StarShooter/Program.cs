@@ -1,10 +1,11 @@
-﻿using StarShooter.Loggers;
+﻿using StarShooter.GameEngine;
+using StarShooter.Loggers;
 
 namespace StarShooter;
 
 class Program
 {
-    private static event Log OnLog;
+    private static readonly LogService Logger;
 
     private static readonly IReadOnlyCollection<Logger> Loggers = new Logger[]
     {
@@ -14,8 +15,8 @@ class Program
 
     static Program()
     {
-        foreach (var logger in Loggers)
-            OnLog += logger.Log;
+        Logger = new();
+        Logger.Initialize(Loggers);
     }
 
     [STAThread]
@@ -27,14 +28,12 @@ class Program
         }
         catch (Exception ex)
         {
-            OnLog.Invoke(ex.Message);
+            LogService.Log(ex.Message);
         }
         finally
         {
+            Logger.Dispose();
             var disposableLoggers = Loggers.OfType<IDisposable>().ToList();
-
-            foreach (var logger in Loggers) OnLog -= logger.Log;
-
             foreach (var disposable in disposableLoggers) disposable.Dispose();
         }
     }
