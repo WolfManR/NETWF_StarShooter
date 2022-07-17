@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarShooter.GameEngine", "StarShooter.GameEngine\StarShooter.GameEngine.csproj", "{2B787EB1-393F-4A48-9F58-0EA44B15EBBC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{6838A7A1-FD51-432E-9860-41708695C2F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6838A7A1-FD51-432E-9860-41708695C2F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6838A7A1-FD51-432E-9860-41708695C2F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B787EB1-393F-4A48-9F58-0EA44B15EBBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B787EB1-393F-4A48-9F58-0EA44B15EBBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B787EB1-393F-4A48-9F58-0EA44B15EBBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B787EB1-393F-4A48-9F58-0EA44B15EBBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
