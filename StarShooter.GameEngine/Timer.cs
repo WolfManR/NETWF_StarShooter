@@ -10,7 +10,7 @@ public class Timer
 
     public void Start()
     {
-        _timer ??= new(_ => { Tick?.Invoke(null, EventArgs.Empty); }, null, 0, Interval);
+        _timer = new(_ => { Tick?.Invoke(null, EventArgs.Empty); }, null, 0, Interval);
     }
 
     public void Stop()
