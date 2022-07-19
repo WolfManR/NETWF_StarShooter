@@ -22,9 +22,28 @@ class Program
     [STAThread]
     static void Main()
     {
+        LogService.Log("GameProject Work Started");
         try
         {
+            Form form = new Form { Width = 800, Height = 600 };
+            form.Show();
+            form.FormClosing += OnExit;
 
+            Engine.Init(form.CreateGraphics(), form.Width, form.Height);
+
+            LogService.Log("GameEngine Initialized");
+
+            MainGame.Init("Player1");
+
+            LogService.Log("MainGame Initialized");
+
+            SplashScreen.Init(form);
+
+            LogService.Log("SplashScreen Initialized");
+
+            Application.Run(form);
+
+            LogService.Log("Application Run");
         }
         catch (Exception ex)
         {
@@ -36,5 +55,11 @@ class Program
             var disposableLoggers = Loggers.OfType<IDisposable>().ToList();
             foreach (var disposable in disposableLoggers) disposable.Dispose();
         }
+    }
+
+    private static void OnExit(object? sender, FormClosingEventArgs e)
+    {
+        Engine.Timer.Stop();
+        LogService.Log("Form Closing");
     }
 }
