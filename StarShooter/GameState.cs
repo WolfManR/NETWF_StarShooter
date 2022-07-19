@@ -1,13 +1,15 @@
 ﻿using StarShooter.GameEngine;
+using StarShooter.Prefabs;
 using StarShooter.Scenes;
 
 namespace StarShooter;
 
 public class GameState
 {
-    private GameScene _currentScene;
     public int PlayerRecord { get; private set; }
     public int PlayerHealth { get; private set; }
+
+    private Queue<Keys> _inputQueue = new();
 
     public GameState(int playerHealth)
     {
@@ -16,15 +18,14 @@ public class GameState
 
     public GameScene CurrentScene
     {
-        get => _currentScene;
         set
         {
-            _currentScene = value;
             value.GameState = this;
+            Engine.Scene = value;
         }
     }
 
-    private Graphics Drawer => Engine.TargetGraphics;
+    public Ship Player { get; set; }
 
     public void RecordUp(int count)
     {
@@ -33,11 +34,13 @@ public class GameState
         LogService.Log($"Record Up on {count} points");
     }
 
-    public void GameOver()
+    public void LoadLevel1()
     {
-        Engine.Timer.Stop();
-        Drawer.DrawString("The End", new Font(FontFamily.GenericSansSerif, 60, FontStyle.Underline), Brushes.Blue, 200, 100);
-        Drawer.DrawString($"Your Record: {PlayerRecord}", new Font(FontFamily.GenericSansSerif, 40, FontStyle.Underline), Brushes.Blue, 150, 190);
-        Engine.Render();
+        CurrentScene = new Level1();
+    }
+
+    public void LoadGameOver()
+    {
+        CurrentScene = new GameOver();
     }
 }

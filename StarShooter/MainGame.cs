@@ -1,47 +1,47 @@
 ﻿using StarShooter.GameEngine;
 using StarShooter.Prefabs;
-using StarShooter.Scenes;
 
 namespace StarShooter;
 
 public class MainGame
 {
-    private static Ship _player;
-
     public static GameState State { get; set; }
-    private static Level1 _scene;
 
     public static void Init(string playerName)
     {
-        _scene = new();
-        State = new GameState(100) { CurrentScene = _scene };
+        State = new GameState(100);
 
         var player = new Ship(new Point(4, Configuration.WindowHeight / 2), Image.FromFile(Configuration.Assets.Ship), State.PlayerHealth, 40);
-        player.Died += State.GameOver;
-        _player = player;
+        player.Died += GameOver;
 
-        State.CurrentScene.Load();
-        State.CurrentScene.Player = player;
+        State.Player = player;
     }
 
     public static void Start()
     {
-        Engine.Scene = State.CurrentScene;
+        State.LoadLevel1();
+        Engine.Start();
+    }
+
+    public static void GameOver()
+    {
+        Engine.Stop();
+        State.LoadGameOver();
         Engine.Start();
     }
 
     public static void Attack()
     {
-        _scene.Bullets.Add(_player.Shoot());
+        PlayerBehaviorManager.Attack();
     }
 
     public static void MoveUp()
     {
-        _player.MoveUp();
+        PlayerBehaviorManager.MoveUp();
     }
 
     public static void MoveDown()
     {
-        _player.MoveDown();
+        PlayerBehaviorManager.MoveDown();
     }
 }

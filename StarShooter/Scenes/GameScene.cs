@@ -1,11 +1,12 @@
 ﻿using StarShooter.GameEngine;
+using StarShooter.Prefabs;
 
 namespace StarShooter.Scenes;
 
 public abstract class GameScene : Scene
 {
     public GameState GameState { get; set; }
-    public GameObject Player { get; set; }
+    public Ship Player { get; set; }
 
     protected void DrawPlayerStatusPanel()
     {
