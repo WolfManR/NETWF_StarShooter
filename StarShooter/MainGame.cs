@@ -27,7 +27,7 @@ public class MainGame
     public static void Start()
     {
         Engine.Scene = State.CurrentScene;
-        Engine.Play();
+        Engine.Start();
     }
 
     public static void Attack()

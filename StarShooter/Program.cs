@@ -59,7 +59,7 @@ class Program
 
     private static void OnExit(object? sender, FormClosingEventArgs e)
     {
-        Engine.Timer.Stop();
+        Engine.Stop();
         LogService.Log("Form Closing");
     }
 }

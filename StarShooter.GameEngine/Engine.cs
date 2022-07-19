@@ -31,7 +31,7 @@ public static class Engine
         };
     }
 
-    public static void Play()
+    public static void Start()
     {
         Scene.Load();
         Timer.Start();
@@ -40,5 +40,10 @@ public static class Engine
     public static void Render()
     {
         buffer.Render();
+    }
+
+    public static void Stop()
+    {
+        Timer.Stop();
     }
 }
