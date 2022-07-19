@@ -14,17 +14,14 @@ public class RectangleCollider
 
     public GameObject Parent { get; }
 
-    public event Action<GameObject, RectangleCollider>? Intersected;
-
     public bool IsCollide(RectangleCollider other)
     {
-        UpdatePosition();
-        var isCollide = _collisionRectangle.IntersectsWith(other._collisionRectangle);
-        if(isCollide) Intersected?.Invoke(Parent, other);
-        return isCollide;
+        UpdateCollisionPosition();
+        other.UpdateCollisionPosition();
+        return _collisionRectangle.IntersectsWith(other._collisionRectangle);
     }
 
-    private void UpdatePosition()
+    private void UpdateCollisionPosition()
     {
         _collisionRectangle.Location = Parent.Position;
     }
