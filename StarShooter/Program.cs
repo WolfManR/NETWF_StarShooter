@@ -33,7 +33,7 @@ class Program
 
             LogService.Log("GameEngine Initialized");
 
-            MainGame.Init("Player1");
+            MainGame.Init("Player1", form);
 
             LogService.Log("MainGame Initialized");
 

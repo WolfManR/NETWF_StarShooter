@@ -8,12 +8,12 @@ public class GameState
 {
     public int PlayerRecord { get; private set; }
     public int PlayerHealth { get; private set; }
+    public Form MainForm { get; }
 
-    private Queue<Keys> _inputQueue = new();
-
-    public GameState(int playerHealth)
+    public GameState(int playerHealth, Form mainForm)
     {
         PlayerHealth = playerHealth;
+        MainForm = mainForm;
     }
 
     public GameScene CurrentScene
@@ -36,6 +36,8 @@ public class GameState
 
     public void LoadLevel1()
     {
+        MainForm.Controls.Clear();
+        MainForm.BackgroundImage = null;
         CurrentScene = new Level1();
     }
 

@@ -11,7 +11,7 @@ public static class SplashScreen
         form.BackgroundImage = background;
         form.BackgroundImageLayout = ImageLayout.Stretch;
 
-        Button play = new Button
+        Button play = new()
         {
             Text = "Play",
             Width = 100,
@@ -20,56 +20,39 @@ public static class SplashScreen
         play.Location = new Point(form.Width - play.Width - 30, form.Height - 200);
         play.Click += (sender, e) =>
         {
-            form.Controls.Clear();
-            form.BackgroundImage = null;
-            form.KeyDown += Form_KeyDown;
             MainGame.Start();
             Log("SplashScreen Button: play - pressed");
         };
 
-        Button records = new Button()
+        Button records = new()
         {
             Text = "Records",
             Width = 100,
-            Height = 30
+            Height = 30,
+            Location = play.Location with { Y = play.Location.Y + play.Height + 10 },
+            Enabled = false
         };
-        records.Location = new Point(play.Location.X, play.Location.Y + play.Height + 10);
 
-        Button exit = new Button()
+        Button exit = new()
         {
             Text = "Exit",
             Width = 100,
-            Height = 30
+            Height = 30,
+            Location = records.Location with { Y = records.Location.Y + records.Height + 10 }
         };
-        exit.Location = new Point(records.Location.X, records.Location.Y + records.Height + 10);
+
         exit.Click += (sender, e) =>
         {
             Log("SplashScreen Button: exit - pressed");
             form.Close();
         };
 
-        Button[] menu = { play, records, exit };
+        Control[] menu = { play, records, exit };
         form.Controls.AddRange(menu);
     }
 
     private static void Log(string message)
     {
         LogService.Log(message);
-    }
-
-    private static void Form_KeyDown(object? sender, KeyEventArgs e)
-    {
-        switch (e.KeyCode)
-        {
-            case Keys.ControlKey:
-                MainGame.Attack();
-                break;
-            case Keys.Up:
-                MainGame.MoveUp();
-                break;
-            case Keys.Down:
-                MainGame.MoveDown();
-                break;
-        }
     }
 }

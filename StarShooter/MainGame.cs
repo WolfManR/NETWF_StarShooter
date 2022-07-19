@@ -7,9 +7,9 @@ public class MainGame
 {
     public static GameState State { get; set; }
 
-    public static void Init(string playerName)
+    public static void Init(string playerName, Form mainForm)
     {
-        State = new GameState(100);
+        State = new GameState(100, mainForm);
 
         var player = new Ship(new Point(4, Configuration.WindowHeight / 2), Image.FromFile(Configuration.Assets.Ship), State.PlayerHealth, 40);
         player.Died += GameOver;
@@ -19,6 +19,7 @@ public class MainGame
 
     public static void Start()
     {
+        State.MainForm.KeyDown += Form_KeyDown;
         State.LoadLevel1();
         Engine.Start();
     }
@@ -29,19 +30,20 @@ public class MainGame
         State.LoadGameOver();
         Engine.Start();
     }
-
-    public static void Attack()
+    
+    private static void Form_KeyDown(object? sender, KeyEventArgs e)
     {
-        PlayerBehaviorManager.Attack();
-    }
-
-    public static void MoveUp()
-    {
-        PlayerBehaviorManager.MoveUp();
-    }
-
-    public static void MoveDown()
-    {
-        PlayerBehaviorManager.MoveDown();
+        switch (e.KeyCode)
+        {
+            case Keys.ControlKey:
+                PlayerBehaviorManager.Attack();
+                break;
+            case Keys.Up:
+                PlayerBehaviorManager.MoveUp();
+                break;
+            case Keys.Down:
+                PlayerBehaviorManager.MoveDown();
+                break;
+        }
     }
 }
