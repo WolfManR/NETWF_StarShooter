@@ -4,6 +4,7 @@ public static class Configuration
 {
     public const int WindowWidth = 800;
     public const int WindowHeight = 600;
+    public static readonly Random Random = new(43976346);
 
     public static class Assets
     {
@@ -12,8 +13,6 @@ public static class Configuration
         public const string Heal = nameof(Assets) + "/" + "Heal.png";
         public const string MainMenuBackground = nameof(Assets) + "/" + "BackGround1.jpg";
         public const string SceneBackground1 = nameof(Assets) + "/" + "BackGround2.jpg";
-        public const string Asteroid1 = nameof(Assets) + "/" + "Asteroid1.png";
-        public const string Asteroid2 = nameof(Assets) + "/" + "Asteroid2.png";
-        public const string Asteroid3 = nameof(Assets) + "/" + "Asteroid3.png";
+        public static string Asteroid => nameof(Assets) + "/" + $"Asteroid{Random.Next(1, 3)}.png";
     }
 }
