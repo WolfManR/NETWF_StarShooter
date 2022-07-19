@@ -37,9 +37,7 @@ class Program
 
             LogService.Log("MainGame Initialized");
 
-            SplashScreen.Init(form);
-
-            LogService.Log("SplashScreen Initialized");
+            MainGame.Start();
 
             Application.Run(form);
 

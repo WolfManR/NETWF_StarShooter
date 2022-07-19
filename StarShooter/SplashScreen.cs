@@ -1,14 +1,17 @@
 ﻿using StarShooter.GameEngine;
-using StarShooter.Prefabs;
+using StarShooter.Scenes;
 
 namespace StarShooter;
 
-public static class SplashScreen
+public class SplashScreen : GameScene
 {
-    static readonly Image background = Image.FromFile(Configuration.Assets.MainMenuBackground);
-    public static void Init(Form form)
+    public event Action? OnStartGame; 
+    public event Action? OnExit; 
+
+    public override void Load()
     {
-        form.BackgroundImage = background;
+        var form = GameState.MainForm;
+        form.BackgroundImage = Image.FromFile(Configuration.Assets.MainMenuBackground);
         form.BackgroundImageLayout = ImageLayout.Stretch;
 
         Button play = new()
@@ -20,7 +23,7 @@ public static class SplashScreen
         play.Location = new Point(form.Width - play.Width - 30, form.Height - 200);
         play.Click += (sender, e) =>
         {
-            MainGame.Start();
+            OnStartGame?.Invoke();
             Log("SplashScreen Button: play - pressed");
         };
 
@@ -44,15 +47,19 @@ public static class SplashScreen
         exit.Click += (sender, e) =>
         {
             Log("SplashScreen Button: exit - pressed");
-            form.Close();
+            OnExit?.Invoke();
         };
 
         Control[] menu = { play, records, exit };
         form.Controls.AddRange(menu);
     }
 
-    private static void Log(string message)
+    public override void Draw()
     {
-        LogService.Log(message);
+        Engine.Stop();
+    }
+
+    public override void Update()
+    {
     }
 }

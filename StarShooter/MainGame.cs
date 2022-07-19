@@ -19,8 +19,7 @@ public class MainGame
 
     public static void Start()
     {
-        State.MainForm.KeyDown += Form_KeyDown;
-        State.LoadLevel1();
+        State.LoadSplashScreen();
         Engine.Start();
     }
 
@@ -29,21 +28,5 @@ public class MainGame
         Engine.Stop();
         State.LoadGameOver();
         Engine.Start();
-    }
-    
-    private static void Form_KeyDown(object? sender, KeyEventArgs e)
-    {
-        switch (e.KeyCode)
-        {
-            case Keys.ControlKey:
-                PlayerBehaviorManager.Attack();
-                break;
-            case Keys.Up:
-                PlayerBehaviorManager.MoveUp();
-                break;
-            case Keys.Down:
-                PlayerBehaviorManager.MoveDown();
-                break;
-        }
     }
 }
