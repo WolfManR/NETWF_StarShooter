@@ -22,8 +22,7 @@ public static class SplashScreen
         {
             form.Controls.Clear();
             form.BackgroundImage = null;
-            form.KeyDown += Form_ShootKeyDown;
-            form.KeyDown += Form_MoveKeyDown;
+            form.KeyDown += Form_KeyDown;
             MainGame.Start();
             Log("SplashScreen Button: play - pressed");
         };
@@ -51,8 +50,6 @@ public static class SplashScreen
 
         Button[] menu = { play, records, exit };
         form.Controls.AddRange(menu);
-
-
     }
 
     private static void Log(string message)
@@ -60,14 +57,19 @@ public static class SplashScreen
         LogService.Log(message);
     }
 
-
-    private static void Form_ShootKeyDown(object sender, KeyEventArgs e)
+    private static void Form_KeyDown(object? sender, KeyEventArgs e)
     {
-        if (e.KeyCode == Keys.ControlKey) MainGame.Attack();
-    }
-    private static void Form_MoveKeyDown(object sender, KeyEventArgs e)
-    {
-        if (e.KeyCode == Keys.Up) MainGame.MoveUp();
-        if (e.KeyCode == Keys.Down) MainGame.MoveDown();
+        switch (e.KeyCode)
+        {
+            case Keys.ControlKey:
+                MainGame.Attack();
+                break;
+            case Keys.Up:
+                MainGame.MoveUp();
+                break;
+            case Keys.Down:
+                MainGame.MoveDown();
+                break;
+        }
     }
 }
